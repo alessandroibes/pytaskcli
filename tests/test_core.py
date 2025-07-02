@@ -1,6 +1,6 @@
 import pytest
 
-from src.core import (
+from src.pytaskcli.core import (
     add_task,
     change_status,
     delete_task,

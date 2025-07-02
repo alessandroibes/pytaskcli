@@ -2,8 +2,8 @@ import json
 
 from pathlib import Path
 
-from src.db import load_database, save_database
-from src.core import create_task
+from src.pytaskcli.db import load_database, save_database
+from src.pytaskcli.core import create_task
 
 
 def test_save_and_load_database(tmp_path: Path):

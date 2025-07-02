@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pytaskcli"
+version = "2.0.0"
+description = "A simple CLI-based task manager."
+authors = [
+    { name = "Alessandro", email = "alessandro.ibes@gmail.com" }
+]
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.7"
+dependencies = [
+    "tabulate",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.urls]
+Homepage = "https://github.com/alessandroibes/py-task-cli"
+
+[project.scripts]
+pytaskcli = "pytaskcli.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["pytaskcli"]
