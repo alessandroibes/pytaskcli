@@ -24,3 +24,10 @@ def add_task(database: Database, description: str) -> Task:
     task = create_task(description)
     database[task_id] = task
     return {task_id: task}
+
+
+def update_task(database: Database, task_id: str, description: str) -> Task:
+    task = database[task_id]
+    task["description"] = description
+    task["updated-at"] = datetime.now().isoformat()
+    return {task_id: task}
