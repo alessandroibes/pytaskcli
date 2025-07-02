@@ -1,6 +1,8 @@
 from datetime import datetime
+from typing import Literal
 
 
+TaskStatus = Literal["todo", "in-progress", "done"]
 Task = dict[str, str]
 Database = dict[str, Task]
 
@@ -35,4 +37,11 @@ def update_task(database: Database, task_id: str, description: str) -> Task:
 
 def delete_task(database: Database, task_id: str) -> Task:
     task = database.pop(task_id)
+    return {task_id: task}
+
+
+def change_status(database: Database, task_id: str, status: TaskStatus) -> Task:
+    task = database[task_id]
+    task["status"] = status
+    task["updated-at"] = datetime.now().isoformat()
     return {task_id: task}

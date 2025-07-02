@@ -1,6 +1,12 @@
 import pytest
 
-from src.core import add_task, update_task, delete_task
+from src.core import (
+    add_task,
+    change_status,
+    delete_task,
+    TaskStatus,
+    update_task
+)
 
 
 @pytest.fixture
@@ -38,3 +44,15 @@ def test_delete_task(empty_db):
 def test_delete_task_invalid_id(empty_db):
     with pytest.raises(KeyError):
         delete_task(empty_db, "99")
+
+
+@pytest.mark.parametrize("status", ["in-progress", "done", "todo"])
+def test_change_status(empty_db, status: TaskStatus):
+    add_task(empty_db, "Test status")
+    result = change_status(empty_db, "1", status)
+    assert result["1"]["status"] == status
+
+
+def test_change_status_invalid_id(empty_db):
+    with pytest.raises(KeyError):
+        change_status(empty_db, "99", "done")
