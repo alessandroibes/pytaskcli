@@ -31,3 +31,8 @@ def update_task(database: Database, task_id: str, description: str) -> Task:
     task["description"] = description
     task["updated-at"] = datetime.now().isoformat()
     return {task_id: task}
+
+
+def delete_task(database: Database, task_id: str) -> Task:
+    task = database.pop(task_id)
+    return {task_id: task}
