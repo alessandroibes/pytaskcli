@@ -1,5 +1,6 @@
 from datetime import datetime
-from typing import Literal
+from typing import Literal, Optional
+from .utils import format_datetime
 
 
 TaskStatus = Literal["todo", "in-progress", "done"]
@@ -45,3 +46,17 @@ def change_status(database: Database, task_id: str, status: TaskStatus) -> Task:
     task["status"] = status
     task["updated-at"] = datetime.now().isoformat()
     return {task_id: task}
+
+
+def list_tasks(database: Database, status_filter: Optional[TaskStatus] = None) -> list[dict]:
+    tasks = []
+    for task_id, task in sorted(database.items(), key=lambda t: int(t[0])):
+        if status_filter is None or task["status"] == status_filter:
+            tasks.append({
+                "id": task_id,
+                "description": task["description"],
+                "status": task["status"],
+                "created At": format_datetime(task["created-at"]),
+                "updated At": format_datetime(task["updated-at"]),
+            })
+    return tasks

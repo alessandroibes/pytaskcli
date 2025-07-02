@@ -4,6 +4,7 @@ from src.core import (
     add_task,
     change_status,
     delete_task,
+    list_tasks,
     TaskStatus,
     update_task
 )
@@ -56,3 +57,20 @@ def test_change_status(empty_db, status: TaskStatus):
 def test_change_status_invalid_id(empty_db):
     with pytest.raises(KeyError):
         change_status(empty_db, "99", "done")
+
+
+def test_list_tasks_all(empty_db):
+    add_task(empty_db, "A")
+    add_task(empty_db, "B")
+    change_status(empty_db, "2", "done")
+    all_tasks = list_tasks(empty_db)
+    assert len(all_tasks) == 2
+
+
+def test_list_tasks_filtered(empty_db):
+    add_task(empty_db, "Task 1")
+    add_task(empty_db, "Task 2")
+    change_status(empty_db, "2", "done")
+    done = list_tasks(empty_db, status_filter="done")
+    assert len(done) == 1
+    assert done[0]["status"] == "done"
