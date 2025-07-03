@@ -5,7 +5,7 @@ from pathlib import Path
 from .core import Database
 
 
-DEFAULT_DB_PATH = Path.home() / "tasks.json"
+DEFAULT_DB_PATH = Path.home() / "pytaskcli.json"
 
 
 def load_database(path: Path = DEFAULT_DB_PATH) -> Database:

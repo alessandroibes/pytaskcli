@@ -146,3 +146,13 @@ pytaskcli list --status done
 ```
 
 ![list all command](prints/pytaskcli_list_done.png)
+
+## Data Location
+
+Tasks are stored locally in a JSON file:
+
+```bash
+~/.pytaskcli.json
+```
+
+This file is automatically created and updated by the app.
