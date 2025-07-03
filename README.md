@@ -43,16 +43,7 @@ The application is run from the command line, accept user actions and inputs as 
 
 ## Installation
 
-### 1. Clone the repository
-
-Clone this repository:
-
-```bash
-git clone https://github.com/alessandroibes/pytaskcli.git
-cd pytaskcli
-```
-
-### 2. Create and activate a virtual environment (recommended)
+### 1. Create and activate a virtual environment (optional)
 
 ```bash
 python -m venv .venv
@@ -62,16 +53,11 @@ source .venv/bin/activate       # macOS/Linux
 .venv\Scripts\activate          # Windows
 ```
 
-### 3. Install dependencies
+### 2. Installation can be done via pip
 
 ```bash
-pip install -e .[dev]
+pip install git+https://github.com/alessandroibes/pytaskcli.git
 ```
-
-This will install:
-
-- Required dependencies (tabulate)
-- Development tools (pytest)
 
 ## How to Run the App
 
@@ -89,24 +75,23 @@ pytaskcli <command> [options]
 pytaskcli add "Write final report"
 ```
 
+![add command](prints/pytaskcli_add.png)
+
 ### Update a task
 
 ```bash
 pytaskcli update 1 "Update README"
 ```
 
-### List all tasks
+![update command](prints/pytaskcli_update.png)
+
+### Delete a task
 
 ```bash
-pytaskcli list
+pytaskcli delete 2
 ```
 
-### List tasks by status
-
-```bash
-pytaskcli list --status done
-pytaskcli list -s todo
-```
+![delete command](prints/pytaskcli_delete.png)
 
 ### Mark a task as in-progress
 
@@ -114,14 +99,50 @@ pytaskcli list -s todo
 pytaskcli mark-in-progress 2
 ```
 
+![list all command](prints/pytaskcli_mark_in_progress.png)
+
 ### Mark a task as done
 
 ```bash
 pytaskcli mark-done 2
 ```
 
-### Delete a task
+![list all command](prints/pytaskcli_mark_done.png)
+
+### List all tasks
 
 ```bash
-pytaskcli delete 2
+pytaskcli list
+
+# Other options
+pytaskcli list -s all
+pytaskcli list --status all
 ```
+
+![list all command](prints/pytaskcli_list_all.png)
+
+### List tasks by status
+
+```bash
+# Status: todo
+pytaskcli list -s todo
+pytaskcli list --status todo
+```
+
+![list all command](prints/pytaskcli_list_todo.png)
+
+```bash
+# Status: in-progress
+pytaskcli list -s in-progress
+pytaskcli list --status in-progress
+```
+
+![list all command](prints/pytaskcli_list_in_progress.png)
+
+```bash
+# Status: done
+pytaskcli list -s done
+pytaskcli list --status done
+```
+
+![list all command](prints/pytaskcli_list_done.png)
